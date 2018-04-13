@@ -30,13 +30,38 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Tests for {@link Converter}
  */
 public class ConverterTest {
 
   private UserConverter userConverter = new UserConverter();
+  
+  
+  /**
+   * Tests Equality properties for User
+  */ 
+  @Test
+  public void testUserEquality(){    
+    User u1 = new User("Bilbo", "Baggens", true, "bilbo@theonering.com");
+    assertTrue(u1.equals(u1));
+    UserDto u2 = new UserDto("Bilbo", "Baggens", true, "bilbo@theonering.com");
+    assertEquals(u1.equals(u2),false);
+    assertEquals(u1.equals(null),false);
+  }
+  
+  /**
+   * Tests Equality properties for UserDto
+  */ 
+  @Test
+  public void testUserDtoEquality(){    
+    UserDto u1 = new UserDto("Bilbo", "Baggens", true, "bilbo@theonering.com");
+    assertTrue(u1.equals(u1));
+    User u2 = new User("Bilbo", "Baggens", true, "bilbo@theonering.com");
+    assertEquals(u1.equals(u2),false);
+    assertEquals(u1.equals(null),false);
+  }
 
   /**
    * Tests whether a converter created of opposite functions holds equality as a bijection.
